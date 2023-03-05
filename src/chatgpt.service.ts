@@ -8,7 +8,6 @@ export class ChatGPTService implements OnModuleInit {
   private api: ChatGPTAPI;
 
   onModuleInit() {
-    console.log('ChatGPTService.onModuleInit()', process.env.OPENAI_API_KEY);
     this.api = new ChatGPTAPI({
       apiKey: process.env.OPENAI_API_KEY,
       fetch,
