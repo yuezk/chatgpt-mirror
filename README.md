@@ -31,6 +31,10 @@ $ pnpm run start:prod
 
 Visit http://localhost:3000
 
+## Credits
+
+Thanks: [transitive-bullshit/chatgpt-api](https://github.com/transitive-bullshit/chatgpt-api)
+
 ## License
 
 [MIT licensed](LICENSE).
