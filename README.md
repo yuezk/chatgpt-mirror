@@ -10,6 +10,12 @@ $ pnpm install
 
 ## Running the app
 
+Create a `.env` file in the root directory and add your OpenAI API key:
+
+```properties
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
 ```bash
 # development
 $ pnpm run start
@@ -20,6 +26,8 @@ $ pnpm run start:dev
 # production mode
 $ pnpm run start:prod
 ```
+
+Visit http://localhost:3000
 
 ## License
 
