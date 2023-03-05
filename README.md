@@ -4,6 +4,8 @@ Based on model `gpt-3.5-turbo`. Demo: https://fastgpt.app
 
 ## Installation
 
+> Tested on Node.js 18.x.
+
 ```bash
 $ pnpm install
 ```
