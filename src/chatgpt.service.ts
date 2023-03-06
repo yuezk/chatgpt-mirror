@@ -7,10 +7,13 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ChatGPTService implements OnModuleInit {
   private api: ChatGPTAPI;
-  private httpProxy: string;
+  private proxyAgent: unknown;
 
   onModuleInit() {
-    this.httpProxy = process.env.HTTP_PROXY;
+    const { HTTP_PROXY } = process.env;
+    if (HTTP_PROXY) {
+      this.proxyAgent = new ProxyAgent(HTTP_PROXY);
+    }
 
     this.api = new ChatGPTAPI({
       apiKey: process.env.OPENAI_API_KEY,
@@ -21,7 +24,7 @@ export class ChatGPTService implements OnModuleInit {
   private proxyFetch = (url: string, options?: any) => {
     return fetch(url, {
       ...options,
-      agent: this.httpProxy ? new ProxyAgent(this.httpProxy) : undefined,
+      agent: this.proxyAgent,
     });
   };
 
