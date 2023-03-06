@@ -16,7 +16,7 @@ Create a `.env` file in the root directory and add your OpenAI API key:
 
 ```properties
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# optional
+# optional, support http or socks proxy
 HTTP_PROXY=http://proxy-server:port
 ```
 
