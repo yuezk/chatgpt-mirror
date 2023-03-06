@@ -1,7 +1,7 @@
 import { Injectable, MessageEvent, OnModuleInit } from '@nestjs/common';
 import { ChatGPTAPI, ChatMessage, ConversationResponseEvent } from 'chatgpt';
 import fetch from 'isomorphic-unfetch';
-import ProxyAgent from 'proxy-agent';
+import ProxyAgent from 'proxy-agent-v2';
 import { Observable } from 'rxjs';
 
 @Injectable()
