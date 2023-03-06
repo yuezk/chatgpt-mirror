@@ -1,18 +1,29 @@
-import { Injectable, OnModuleInit, MessageEvent } from '@nestjs/common';
+import { Injectable, MessageEvent, OnModuleInit } from '@nestjs/common';
 import { ChatGPTAPI, ChatMessage, ConversationResponseEvent } from 'chatgpt';
 import fetch from 'isomorphic-unfetch';
+import ProxyAgent from 'proxy-agent';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class ChatGPTService implements OnModuleInit {
   private api: ChatGPTAPI;
+  private httpProxy: string;
 
   onModuleInit() {
+    this.httpProxy = process.env.HTTP_PROXY;
+
     this.api = new ChatGPTAPI({
       apiKey: process.env.OPENAI_API_KEY,
-      fetch,
+      fetch: this.proxyFetch,
     });
   }
+
+  private proxyFetch = (url: string, options?: any) => {
+    return fetch(url, {
+      ...options,
+      agent: this.httpProxy ? new ProxyAgent(this.httpProxy) : undefined,
+    });
+  };
 
   sendMessage(message: string, parentMessageId: string): Observable<MessageEvent> {
     const observable = new Observable<MessageEvent>((subscriber) => {

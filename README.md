@@ -16,6 +16,8 @@ Create a `.env` file in the root directory and add your OpenAI API key:
 
 ```properties
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# optional
+HTTP_PROXY=http://proxy-server:port
 ```
 
 ```bash
