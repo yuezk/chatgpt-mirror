@@ -6,3 +6,7 @@ export type ConversationRequestBody = {
   model: string;
   parent_message_id: string;
 };
+
+export type GenTitleRequestBody = {
+  message_id: string;
+}

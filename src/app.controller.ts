@@ -1,8 +1,8 @@
-import { Body, Controller, MessageEvent, Post, Sse } from '@nestjs/common';
+import { Body, Controller, Get, MessageEvent, Post, Sse } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { AppService } from './app.service.js';
-import { ConversationRequestBody } from './app.types';
+import { ConversationRequestBody, GenTitleRequestBody } from './app.types';
 
 @Controller({ path: '/backend-api' })
 export class AppController {
@@ -17,6 +17,16 @@ export class AppController {
     };
   }
 
+  @Get('conversations')
+  conversations() {
+    return {
+      items: [],
+      total: 0,
+      limit: 20,
+      offset: 0,
+    };
+  }
+
   @Post('conversation')
   @Sse()
   conversation(@Body() body: ConversationRequestBody): Observable<MessageEvent> {
@@ -24,5 +34,12 @@ export class AppController {
     const message = messages[0]?.content.parts[0] ?? '';
 
     return this.appService.sendMessage(message, parent_message_id);
+  }
+
+  @Post('conversation/gen_title/')
+  generateTitle(@Body() body: GenTitleRequestBody) {
+    return {
+      title: '',
+    };
   }
 }
