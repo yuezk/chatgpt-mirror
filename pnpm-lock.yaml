@@ -17,7 +17,7 @@ specifiers:
   '@types/uuid': ^9.0.1
   '@typescript-eslint/eslint-plugin': ^5.0.0
   '@typescript-eslint/parser': ^5.0.0
-  chatgpt: ^5.0.6
+  chatgpt: ^5.0.8
   compression: ^1.7.4
   dotenv: ^16.0.3
   eslint: ^8.0.1
@@ -44,7 +44,7 @@ dependencies:
   '@nestjs/core': 9.3.9_q6agyr4hwia55oswpsa7zjxcpm
   '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
   '@nestjs/serve-static': 3.0.1_77foi4w27ghy47yutmnzv7krjy
-  chatgpt: 5.0.6
+  chatgpt: 5.0.8
   compression: 1.7.4
   dotenv: 16.0.3
   isomorphic-unfetch: 4.0.2
@@ -1973,8 +1973,8 @@ packages:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
     dev: true
 
-  /chatgpt/5.0.6:
-    resolution: {integrity: sha512-BQ0eN2GpAlw9ojsxkHmW+bTuekbllZbOkKqjDSIVSMtbMoYDx59vcg6xXnCPkB0OBFGuG89eqGhLAfMIW34Hcw==}
+  /chatgpt/5.0.8:
+    resolution: {integrity: sha512-Bjh7Y15QIsZ+SkQvbbZGymv1PGxkZ7X1vwqAwvyqaMMhbipU4kxht/GL62VCxhoUCXPwxTfScbFeNFtNldgqaw==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
