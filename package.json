@@ -29,7 +29,7 @@
     "chatgpt": "^5.0.8",
     "compression": "^1.7.4",
     "dotenv": "^16.0.3",
-    "isomorphic-unfetch": "^4.0.2",
+    "node-fetch": "^3.3.0",
     "proxy-agent-v2": "^1.0.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
@@ -76,5 +76,12 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "webpack"
+      ]
+    }
   }
 }
