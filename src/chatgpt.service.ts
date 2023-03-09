@@ -44,7 +44,7 @@ export class ChatGPTService implements OnModuleInit {
           },
         })
         .catch((err) => {
-          this.logger.error(err);
+          this.logger.error('Error sending message', err);
 
           subscriber.next({
             type: 'add',
