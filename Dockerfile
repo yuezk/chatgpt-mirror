@@ -20,6 +20,7 @@ ENV TZ="Asia/Shanghai"
 WORKDIR /app
 COPY package.json .
 COPY public /app/public
+COPY config /app/config
 COPY --from=0 /app/node_modules /app/node_modules
 COPY --from=0 /app/dist /app/dist
 

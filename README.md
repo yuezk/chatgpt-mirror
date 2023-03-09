@@ -35,6 +35,23 @@ Visit http://localhost:3000
 
 ## Running the app with Docker
 
+### Build the image
+
+```bash
+$ docker build -t chatgpt-mirror .
+```
+
+### Run the container
+
+```bash
+$ docker run -d -p 3000:3000 --env-file .env chatgpt-mirror
+```
+
+### Run with the config file
+
+```bash
+$ docker run -d -p 3000:3000 --env-file .env -v $(pwd)/config/app.config.json:/app/config/app.config.json chatgpt-mirror
+```
 
 ## Configuration
 
