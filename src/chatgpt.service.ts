@@ -67,8 +67,11 @@ export class ChatGPTService implements OnModuleInit {
           content_type: 'text',
           parts: [text],
         },
+        author: {
+          role: 'assistant',
+        },
       },
       error: null,
-    };
+    } as ConversationResponseEvent;
   }
 }
