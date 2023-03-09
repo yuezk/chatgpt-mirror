@@ -1,4 +1,4 @@
-import { Injectable, MessageEvent, OnModuleInit } from '@nestjs/common';
+import { Injectable, Logger, MessageEvent, OnModuleInit } from '@nestjs/common';
 import { ChatGPTAPI, ChatMessage, ConversationResponseEvent } from 'chatgpt';
 import fetch from 'isomorphic-unfetch';
 import ProxyAgent from 'proxy-agent-v2';
@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class ChatGPTService implements OnModuleInit {
+  private readonly logger = new Logger(ChatGPTService.name);
+
   private api: ChatGPTAPI;
   private proxyAgent: unknown;
 
@@ -40,7 +42,19 @@ export class ChatGPTService implements OnModuleInit {
             });
           },
         })
-        .then(() => {
+        .catch((err) => {
+          this.logger.error(err);
+
+          subscriber.next({
+            type: 'add',
+            data: {
+              error: {
+                message: err.message || 'Unknown error',
+              },
+            },
+          });
+        })
+        .finally(() => {
           subscriber.next({
             data: '[DONE]',
           });
