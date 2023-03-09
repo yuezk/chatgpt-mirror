@@ -1,0 +1,9 @@
+{
+  "openai": {
+    "systemMessage": "You are ChatGPT, a large language model trained by OpenAI. Answer as concisely as possible",
+    "maxTokens": 4000,
+    // Currently, only `gpt-3.5-turbo` and `gpt-3.5-turbo-0301` are supported.
+    // default: `gpt-3.5-turbo`
+    "model": "gpt-3.5-turbo"
+  }
+}

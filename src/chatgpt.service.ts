@@ -2,8 +2,10 @@ import { Injectable, Logger, MessageEvent, OnModuleInit } from '@nestjs/common';
 import { ChatGPTAPI, ChatMessage, ConversationResponseEvent } from 'chatgpt';
 import fetch from './fetch.js';
 
+import { ConfigService } from '@nestjs/config';
 import ProxyAgent from 'proxy-agent-v2';
 import { Observable } from 'rxjs';
+import { OpenAiConfig } from './config/configuration.types.js';
 
 @Injectable()
 export class ChatGPTService implements OnModuleInit {
@@ -12,15 +14,25 @@ export class ChatGPTService implements OnModuleInit {
   private api: ChatGPTAPI;
   private proxyAgent: unknown;
 
+  constructor(private readonly configService: ConfigService) {}
+
   onModuleInit() {
     const { HTTP_PROXY } = process.env;
     if (HTTP_PROXY) {
       this.proxyAgent = new ProxyAgent(HTTP_PROXY);
     }
 
+    const openaiConfig: OpenAiConfig = this.configService.get('openai') || {};
+    const { systemMessage, maxTokens, model = 'gpt-3.5-turbo' } = openaiConfig;
+
     this.api = new ChatGPTAPI({
       apiKey: process.env.OPENAI_API_KEY,
       fetch: this.proxyFetch,
+      systemMessage,
+      maxModelTokens: maxTokens,
+      completionParams: {
+        model,
+      },
     });
   }
 

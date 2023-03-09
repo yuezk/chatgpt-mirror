@@ -6,12 +6,15 @@ import { fileURLToPath } from 'url';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { ChatGPTService } from './chatgpt.service.js';
+import configuration from './config/configuration.js';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      load: [configuration]
+    }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
       serveRoot: '/',

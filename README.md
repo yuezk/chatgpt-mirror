@@ -33,6 +33,14 @@ $ pnpm run start:prod
 
 Visit http://localhost:3000
 
+## Running the app with Docker
+
+
+## Configuration
+
+You can configure the app by copying the `config/example.json` to `config/app.config.json`
+and editing its values. Note: comments are not allowed in JSON files.
+
 ## Credits
 
 Thanks: [transitive-bullshit/chatgpt-api](https://github.com/transitive-bullshit/chatgpt-api)
