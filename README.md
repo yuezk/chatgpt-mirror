@@ -58,6 +58,10 @@ $ docker run -d -p 3000:3000 --env-file .env -v $(pwd)/config/app.config.json:/a
 You can configure the app by copying the `config/example.json` to `config/app.config.json`
 and editing its values. Note: comments are not allowed in JSON files.
 
+## Error messages
+
+Error messages for the OpenAI API can be customized by editing the `config/app.config.json` file. See the examples in the `config/example.json` file.
+
 ## Credits
 
 Thanks: [transitive-bullshit/chatgpt-api](https://github.com/transitive-bullshit/chatgpt-api)

@@ -4,6 +4,20 @@
     "maxTokens": 4000,
     // Currently, only `gpt-3.5-turbo` and `gpt-3.5-turbo-0301` are supported.
     // default: `gpt-3.5-turbo`
-    "model": "gpt-3.5-turbo"
+    "model": "gpt-3.5-turbo",
+    "errorMapping1": [
+      {
+        "keyword": "insufficient_quota",
+        "message": "The API key has insufficient quota."
+      },
+      {
+        "keyword": "Rate limit reached for",
+        "message": "The API key has reached its rate limit."
+      },
+      {
+        "keyword": "context_length_exceeded",
+        "message": "The context length exceeds the maximum allowed length."
+      }
+    ]
   }
 }

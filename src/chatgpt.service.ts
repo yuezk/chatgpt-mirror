@@ -5,7 +5,7 @@ import fetch from './fetch.js';
 import { ConfigService } from '@nestjs/config';
 import ProxyAgent from 'proxy-agent-v2';
 import { Observable } from 'rxjs';
-import { OpenAiConfig } from './config/configuration.types.js';
+import { ErrorMapping, OpenAiConfig } from './config/configuration.types.js';
 
 @Injectable()
 export class ChatGPTService implements OnModuleInit {
@@ -13,8 +13,11 @@ export class ChatGPTService implements OnModuleInit {
 
   private api: ChatGPTAPI;
   private proxyAgent: unknown;
+  private errorMapping: ErrorMapping[];
 
-  constructor(private readonly configService: ConfigService) {}
+  constructor(private readonly configService: ConfigService) {
+    this.errorMapping = configService.get('openai.errorMapping') || [];
+  }
 
   onModuleInit() {
     const { HTTP_PROXY } = process.env;
@@ -23,7 +26,8 @@ export class ChatGPTService implements OnModuleInit {
     }
 
     const openaiConfig: OpenAiConfig = this.configService.get('openai') || {};
-    const { systemMessage, maxTokens, model = 'gpt-3.5-turbo' } = openaiConfig;
+    const { systemMessage, maxTokens, model = 'gpt-3.5-turbo', errorMapping } = openaiConfig;
+    this.errorMapping = errorMapping || [];
 
     this.api = new ChatGPTAPI({
       apiKey: process.env.OPENAI_API_KEY,
@@ -62,7 +66,7 @@ export class ChatGPTService implements OnModuleInit {
             type: 'add',
             data: {
               error: {
-                message: err.message || 'Unknown error',
+                message: this.buildErrorMessage(err),
               },
             },
           });
@@ -100,5 +104,11 @@ export class ChatGPTService implements OnModuleInit {
       },
       error: null,
     } as ConversationResponseEvent;
+  }
+
+  private buildErrorMessage(err: { message?: string }): string {
+    const { message } = err;
+    const errorMapping = this.errorMapping.find((item) => message?.includes(item.keyword));
+    return errorMapping?.message || message || 'Unknown error';
   }
 }
