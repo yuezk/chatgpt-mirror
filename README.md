@@ -1,6 +1,9 @@
+<!-- Archive notice -->
+> :warning: This repository is archived. Please use [ChatbotUI](https://github.com/mckaywrigley/chatbot-ui) instead.
+
 # ChatGPT Mirror
 
-Based on model `gpt-3.5-turbo`. Demo: https://fastgpt.app
+Based on model `gpt-3.5-turbo`.
 
 ## Installation
 
